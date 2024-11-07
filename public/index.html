@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin Dashboard - Database View</title>
+</head>
+<body>
+    <h1>👋 Hey there, Welcome to Admin Dashboard</h1>
+    <h2>👉 Select a database location from the dropdown menu to view database information</h2>
+    <label for="locationSelect">Choose a location: 👇</label>
+    <select id="locationSelect">
+        <option value="Location1">Finland Database</option>
+        <option value="Location2">Singapore Database</option>
+        <option value="Location3">USA Database</option>
+    </select>
+    <button onclick="fetchData()">View Details</button>
+
+    <h2>Database Information</h2>
+    <div id="output"></div>
+
+    <script>
+        async function fetchData() {
+            const location = document.getElementById("locationSelect").value;
+            const response = await fetch(`/getData?location=${location}`);
+            const data = await response.json();
+            displayData(data);
+        }
+
+        function displayData(data) {
+            let outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = '';  // Clear previous content
+
+            // Display data in table format
+            for (let tableName in data) {
+                let tableData = data[tableName];
+                let tableHtml = `
+                    <h3>${tableName}</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                ${Object.keys(tableData[0]).map(col => `<th>${col}</th>`).join('')}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tableData.map(row => `
+                                <tr>
+                                    ${Object.values(row).map(value => `<td>${value}</td>`).join('')}
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+                outputDiv.innerHTML += tableHtml;
+            }
+        }
+    </script>
+</body>
+</html>
