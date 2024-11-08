@@ -1,8 +1,6 @@
--- Create Database
 CREATE DATABASE Location1;
 USE Location1;
 
--- Customers Table
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY,
     Name VARCHAR(100),
@@ -18,7 +16,6 @@ INSERT INTO Customers VALUES
 (5, 'Ronan Williams', 'ronan@email.com', 'Finland'),
 (6, 'Reese Conway', 'reese@email.com', 'Finland');
 
--- Products Table (create this before Orders to avoid foreign key issues)
 CREATE TABLE Products (
     ProductID INT PRIMARY KEY,
     ProductName VARCHAR(100),
@@ -37,7 +34,6 @@ INSERT INTO Products VALUES
 (109, 'Mouse', 14.99),
 (110, 'Keyboard', 24.99);
 
--- Orders Table (create after Products to enable foreign key references)
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     CustomerID INT,
@@ -55,7 +51,6 @@ INSERT INTO Orders VALUES
 (5, 4, 110, '2024-01-03');
 
 
--- Inventory Table
 CREATE TABLE Inventory (
     ProductID INT,
     Stock INT,

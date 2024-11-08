@@ -1,8 +1,6 @@
--- Create Database
 CREATE DATABASE Location2;
 USE Location2;
 
--- Customers Table
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY,
     Name VARCHAR(100),
@@ -11,16 +9,15 @@ CREATE TABLE Customers (
 );
 
 INSERT INTO Customers VALUES
-(1, 'Amina Levy', 'Amina@mail.com', 'Singapore'),
-(2, 'Jude Spears', 'Jude@mail.com', 'Singapore'),
-(3, 'Ava Hoover', 'Ava@mail.com', 'Singapore'),
-(4, 'Orlando Sheppard', 'Orlando@mail.com', 'Singapore'),
-(5, 'Mira Delgado', 'Mira@mail.com', 'Singapore'),
-(6, 'Ellison Daniel', 'llison@mail.com', 'Singapore'),
-(7, 'Shane Benitez', 'Shane@mail.com', 'Singapore'),
-(8, 'Rosa Hanson', 'Rosa@mail.com', 'Singapore');
+(1, 'Amina Levy', 'Amina@email.com', 'Singapore'),
+(2, 'Jude Spears', 'Jude@email.com', 'Singapore'),
+(3, 'Ava Hoover', 'Ava@email.com', 'Singapore'),
+(4, 'Orlando Sheppard', 'Orlando@email.com', 'Singapore'),
+(5, 'Mira Delgado', 'Mira@email.com', 'Singapore'),
+(6, 'Ellison Daniel', 'llison@email.com', 'Singapore'),
+(7, 'Shane Benitez', 'Shane@email.com', 'Singapore'),
+(8, 'Rosa Hanson', 'Rosa@email.com', 'Singapore');
 
--- Products Table (create this before Orders to avoid foreign key issues)
 CREATE TABLE Products (
     ProductID INT PRIMARY KEY,
     ProductName VARCHAR(100),
@@ -39,7 +36,6 @@ INSERT INTO Products VALUES
 (109, 'Mouse', 14.99),
 (110, 'Keyboard', 24.99);
 
--- Orders Table (create after Products to enable foreign key references)
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     CustomerID INT,
@@ -59,7 +55,6 @@ INSERT INTO Orders VALUES
 (7, 8, 108, '2024-01-05');
 
 
--- Inventory Table
 CREATE TABLE Inventory (
     ProductID INT,
     Stock INT,
